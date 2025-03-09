@@ -1,0 +1,45 @@
+.navbar-custom {
+    background-color: #ff69b4 !important; 
+
+}
+
+.footer-custom {
+    background-color: #ff69b4 !important;
+    color: white;
+}
+
+
+.btn-custom {
+    background-color: #229d12 !important;
+    color: white !important;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-custom:hover {
+    background-color: #ff1493 !important;
+}
+
+
+.table-custom {
+    background-color: #ff69b4 !important;
+    color: white !important;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table-custom th, .table-custom td {
+    border: 1px solid #fff;
+    padding: 8px;
+    text-align: left;
+}
+
+.table-custom tr:nth-child(even) {
+    background-color: #ff1493 !important;
+}
+
+.table-custom th {
+    background-color: #ff1493 !important;
+}

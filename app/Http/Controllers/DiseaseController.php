@@ -9,7 +9,8 @@ class DiseaseController extends Controller
 {
     public function index()
     {
-        $diseases = Disease::all()->map(function ($disease) {
+        $diseases = Disease::all()->map(function ($disease) 
+        {
             $disease->symptoms = is_string($disease->symptoms) ? json_decode($disease->symptoms) : $disease->symptoms;
             $disease->factors = is_string($disease->factors) ? json_decode($disease->factors) : $disease->factors;
             $disease->affected_plants = is_string($disease->affected_plants) ? json_decode($disease->affected_plants) : $disease->affected_plants;

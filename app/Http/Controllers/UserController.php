@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-  
+
 use App\Http\Controllers\Controller;
 use App\Models\User;
 // use Validator;
@@ -54,31 +54,33 @@ class UserController extends Controller
      */
    // User Login
    public function login(Request $request)
-   {
-       // Validate the incoming request
-       $request->validate([
-           'email' => 'required|email',
-           'password' => 'required'
-       ]);
+{
+    // Validate the incoming request
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required'
+    ]);
+
+    // Attempt to authenticate and create a token
+    $credentials = $request->only('email', 'password');
+
+    try {
+        // If authentication fails
+        if (!$token = JWTAuth::attempt($credentials)) {
+            return response()->json(['error' => 'Invalid credentials'], 401);
+        }
+    } catch (JWTException $e) {
+        return response()->json(['error' => 'Could not create token'], 500);
+    }
+
+    // Return token on success
+    return response()->json([
+        'token' => $token,
+        'redirect_url' => route('treatments.index')
+    ]);
+}
+
    
-       // Attempt to authenticate and create a token
-       $credentials = $request->only('email', 'password');
-   
-       try {
-           // If authentication fails
-           if (!$token = JWTAuth::attempt($credentials)) {
-               return response()->json(['error' => 'Invalid credentials'], 401);
-           }
-       } catch (JWTException $e) {
-           return response()->json(['error' => 'Could not create token'], 500);
-       }
-   
-       // Return token on success
-       return response()->json([
-           'message' => 'Login successful',
-           'token' => $token
-       ]);
-   }
    
   
     /**
